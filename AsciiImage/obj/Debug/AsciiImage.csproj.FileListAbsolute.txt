@@ -1,0 +1,17 @@
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\AsciiImage.csproj.AssemblyReference.cache
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\AsciiImage.csproj.SuggestedBindingRedirects.cache
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\MainWindow.g.cs
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\App.g.cs
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\AsciiImage_MarkupCompile.cache
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\AsciiImage_MarkupCompile.lref
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\bin\Debug\AsciiImage.exe.config
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\bin\Debug\AsciiImage.exe
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\bin\Debug\AsciiImage.pdb
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\MainWindow.baml
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\AsciiImage.g.resources
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\AsciiImage.Properties.Resources.resources
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\AsciiImage.csproj.GenerateResource.cache
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\AsciiImage.csproj.CoreCompileInputs.cache
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\AsciiImage.exe
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\AsciiImage.pdb
+C:\Users\UnderKo\source\repos\AsciiImage\AsciiImage\obj\Debug\GeneratedInternalTypeHelper.g.cs
