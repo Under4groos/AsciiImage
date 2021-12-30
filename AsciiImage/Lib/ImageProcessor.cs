@@ -32,14 +32,15 @@ class ImageProcessor
 
     public void DrawAsciiImage(string ResultFileFullPath)
     {
-        int spacing = 3;
+
+        int spacing = 6;
+
         Bitmap image = new Bitmap(this.fpath);
         Bitmap AsciiImage = new Bitmap(image.Width, image.Height);
-        Font drawFont = new Font("Arial", spacing-1);
+       
         SolidBrush drawBrush = new SolidBrush(Color.Black);
-
-
-
+       
+        Font drawFont = new Font("Arial", spacing * 0.8f);
 
         //Console.WriteLine(brDrawSetting);
         List<string> lines = new List<string>();
