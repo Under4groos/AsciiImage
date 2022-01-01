@@ -1,19 +1,8 @@
-﻿using AsciiImage.Lib;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
+ 
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using UcAutoClicker.Lib;
 
 namespace AsciiImage
@@ -23,10 +12,14 @@ namespace AsciiImage
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        ImageProcessor imageProcessor;
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Width = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width * 0.7;
+            this.Height = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height * 0.7;
+
             new WinResize(this).RightDown(border_resize);
             new WinDragMove(this)
             {
@@ -37,26 +30,15 @@ namespace AsciiImage
             new WBControl(this, maxim, ACTIONS.SIZE_max);
             new WBControl(this, closeim, ACTIONS.CLOSE);
             name_program.Content = this.Title;
+
+
             
 
-        }
-        private void DisposeImage(BitmapImage img)
-        {
-            if (img != null)
+            save_to_txt.PreviewMouseLeftButtonDown += (o, e) =>
             {
-                try
-                {
-                    using (var ms = new MemoryStream(new byte[] { 0x0 }))
-                    {
-                        img = new BitmapImage();
-                        img.StreamSource = ms;
-                    }
-                }
-                catch (Exception e)
-                {
-                    System.Diagnostics.Debug.WriteLine("ImageDispose FAILED " + e.Message);
-                }
-            }
+                if(imageProcessor != null)
+                    imageProcessor.DrawAsciiImage(imageProcessor.new_path , ImageProcessorType.Type.txt);
+            };
         }
         private void Grid_Drop(object sender, DragEventArgs e)
         {
@@ -65,34 +47,34 @@ namespace AsciiImage
             string[] files = (string[])e.Data.GetData(System.Windows.DataFormats.FileDrop);
             string file_1 = files[0];
             FileInfo fi = new FileInfo(file_1);
-            if(File.Exists(file_1))
+            if (File.Exists(file_1))
             {
-                 
+
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 bitmap.UriSource = new Uri(file_1);
                 bitmap.EndInit();
-                
+
                 image_a_.Source = bitmap;
 
-                ImageProcessor imageProcessor = new ImageProcessor(file_1);
-                file_1 = fi.Name + "_ip_" + fi.Extension;
+                imageProcessor = new ImageProcessor(file_1);
+                imageProcessor.new_path = fi.Name + "_ip_" + fi.Extension;
 
-                imageProcessor.DrawAsciiImage(file_1);
+                imageProcessor.DrawAsciiImage(imageProcessor.new_path);
 
 
                 bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri( new FileInfo(file_1).FullName, UriKind.RelativeOrAbsolute);
+                bitmap.UriSource = new Uri(new FileInfo(imageProcessor.new_path).FullName, UriKind.RelativeOrAbsolute);
                 bitmap.EndInit();
 
 
-               
+
                 image_d_.Source = bitmap;
-                DisposeImage(bitmap);
-               
+
+
             }
-                
+
         }
     }
 }

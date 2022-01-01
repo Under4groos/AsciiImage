@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AsciiImage" xmlns:controls="clr-namespace:AsciiImage.Controls"
         mc:Ignorable="d" AllowDrop="True" Drop="Grid_Drop"
+        
         AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" 
-        Title="MainWindow" Height="800" Width="1200">
+        Title="MainWindow">
     <Window.Resources>
         <Style x:Key="style_border_1" TargetType="Border">
             <Setter Property="Background" Value="#333333"/>
@@ -74,6 +75,17 @@
                 </Grid.ColumnDefinitions>
                 <Image x:Name="image_a_" StretchDirection="Both" Stretch="Uniform"></Image>
                 <Image x:Name="image_d_" StretchDirection="Both" Stretch="Uniform" Grid.Column="1"></Image>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,10">
+                    
+                    <Border x:Name="save_to_txt" Style="{StaticResource style_border_1}"  Height="25" >
+                        <Label Content="Save to text" FontSize="14" 
+                                         HorizontalContentAlignment="Center" 
+                                         VerticalContentAlignment="Center" Foreground="#FF999999" 
+                                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                         Padding="0,0,0,0" Margin="5,0,5,0"/>
+
+                    </Border>
+                </StackPanel>
             </Grid>
             <Border x:Name="border_resize" Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-1,-1" Background="#02FFFFFF"></Border>
         </Grid>

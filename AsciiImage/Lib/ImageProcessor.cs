@@ -4,11 +4,23 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
+public static class ImageProcessorType
+{
+    public  enum Type
+    {
+        image = 0,
+        txt = 1,
+    }
+}
 class ImageProcessor
 {
-    private string path;
+    public string path;
+    public string new_path;
+
     BrDrawSetting brDrawSetting = new BrDrawSetting();
-    public ImageProcessor(string filepath)
+     
+
+    public ImageProcessor(string filepath )
     {
         path = filepath;
 
@@ -24,15 +36,15 @@ class ImageProcessor
 
     int AverageRgb(int x, int y, Bitmap image)
     {
-        // 0 - 255
+      
         var col = image.GetPixel(x, y);
-        int average = (col.R + col.G + col.B) / 3;
-        return average;
+        return (col.R + col.G + col.B) / 3;
+        
     }
 
-    public void DrawAsciiImage(string ResultFileFullPath)
+    public void DrawAsciiImage(string ResultFileFullPath , ImageProcessorType.Type imageProcessorType = ImageProcessorType.Type.image)
     {
-
+        if (ResultFileFullPath == String.Empty) return;
         int spacing = 6;
 
         Bitmap image = new Bitmap(this.fpath);
@@ -101,10 +113,10 @@ class ImageProcessor
             lines.Add(line_);
             
         }
-        File.WriteAllLines("ret.txt", lines);
-        void save( int ic = 0)
+
+        void save(int ic = 0)
         {
-            string ex =  new FileInfo(ResultFileFullPath).Extension;
+            string ex = new FileInfo(ResultFileFullPath).Extension;
             try
             {
                 ResultFileFullPath = ResultFileFullPath.Replace(ex, ic + ex);
@@ -118,9 +130,22 @@ class ImageProcessor
                 save(ic++);
             }
         }
-        if (File.Exists(ResultFileFullPath))
-            File.Delete(ResultFileFullPath);
-        AsciiImage.Save(ResultFileFullPath);
+        switch (imageProcessorType)
+        {
+            case ImageProcessorType.Type.image:
+                if (File.Exists(ResultFileFullPath))
+                    File.Delete(ResultFileFullPath);
+                AsciiImage.Save(ResultFileFullPath);
+                break;
+            case ImageProcessorType.Type.txt:
+                File.WriteAllLines("ret.txt", lines);
+                break;
+            default:
+                break;
+        }
+        
+        
+        
 
 
     }
