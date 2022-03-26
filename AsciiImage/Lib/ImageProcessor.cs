@@ -49,8 +49,8 @@ class ImageProcessor
 
         Bitmap image = new Bitmap(this.fpath);
         Bitmap AsciiImage = new Bitmap(image.Width, image.Height);
-       
-        SolidBrush drawBrush = new SolidBrush(Color.Black);
+        
+         SolidBrush drawBrush = new SolidBrush(Color.Black);
        
         Font drawFont = new Font("Arial", spacing * 0.8f);
 
@@ -108,7 +108,7 @@ class ImageProcessor
                     //}
                     #endregion
                 }
-                line_ += "  ";
+                line_ += "";
             }
             lines.Add(line_);
             
@@ -136,9 +136,13 @@ class ImageProcessor
                 if (File.Exists(ResultFileFullPath))
                     File.Delete(ResultFileFullPath);
                 AsciiImage.Save(ResultFileFullPath);
+                AsciiImage.Dispose();
+                image.Dispose();
                 break;
             case ImageProcessorType.Type.txt:
                 File.WriteAllLines("ret.txt", lines);
+                AsciiImage.Dispose();
+                image.Dispose();
                 break;
             default:
                 break;

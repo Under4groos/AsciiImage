@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AsciiImage" xmlns:controls="clr-namespace:AsciiImage.Controls"
         mc:Ignorable="d" AllowDrop="True" Drop="Grid_Drop"
-        
+        Width="1200" Height="600"
         AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" 
         Title="MainWindow">
     <Window.Resources>
@@ -31,8 +31,9 @@
         <SolidColorBrush></SolidColorBrush>
     </Window.Background>
     <!--BorderBrush="#FF4D4D4D"-->
-    <Border BorderBrush="#FF4D4D4D"  BorderThickness="1" Background="#E51F1F1F">
+    <Border BorderBrush="#FF4D4D4D"  BorderThickness="1" Background="#FF1F1F1F">
         <Grid>
+            <Label x:Name="labell" Content="Drop image" Foreground="White" FontSize="48" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
             <controls:DGrid VerticalAlignment="Top" Height="25"   Alpha="1" >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Label x:Name="name_program"  Foreground="White" Content="name program"></Label>
@@ -68,26 +69,24 @@
                 </StackPanel>
 
             </controls:DGrid>
-            <Grid Margin="0,30,0,0" >
+            <Grid Margin="0,30,0,30" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Image x:Name="image_a_" StretchDirection="Both" Stretch="Uniform"></Image>
                 <Image x:Name="image_d_" StretchDirection="Both" Stretch="Uniform" Grid.Column="1"></Image>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,10">
-                    
-                    <Border x:Name="save_to_txt" Style="{StaticResource style_border_1}"  Height="25" >
-                        <Label Content="Save to text" FontSize="14" 
+                 
+            </Grid>
+            <Border x:Name="border_resize" Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-1,-1" Background="#02FFFFFF"></Border>
+            <Border x:Name="save_to_txt" Style="{StaticResource style_border_1}"  Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+                <Label Content="Save to text" FontSize="14" 
                                          HorizontalContentAlignment="Center" 
                                          VerticalContentAlignment="Center" Foreground="#FF999999" 
                                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                                          Padding="0,0,0,0" Margin="5,0,5,0"/>
 
-                    </Border>
-                </StackPanel>
-            </Grid>
-            <Border x:Name="border_resize" Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-1,-1" Background="#02FFFFFF"></Border>
+            </Border>
         </Grid>
     </Border>
 </Window>

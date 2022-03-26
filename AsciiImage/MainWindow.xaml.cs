@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Windows;
  
 using System.Windows.Media.Imaging;
@@ -46,34 +47,53 @@ namespace AsciiImage
                 return;
             string[] files = (string[])e.Data.GetData(System.Windows.DataFormats.FileDrop);
             string file_1 = files[0];
-            FileInfo fi = new FileInfo(file_1);
-            if (File.Exists(file_1))
+
+
+            new Thread(new ThreadStart(() => 
             {
-
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri(file_1);
-                bitmap.EndInit();
-
-                image_a_.Source = bitmap;
-
-                imageProcessor = new ImageProcessor(file_1);
-                imageProcessor.new_path = fi.Name + "_ip_" + fi.Extension;
-
-                imageProcessor.DrawAsciiImage(imageProcessor.new_path);
-
-
-                bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri(new FileInfo(imageProcessor.new_path).FullName, UriKind.RelativeOrAbsolute);
-                bitmap.EndInit();
+                this.Dispatcher.Invoke(new Action(() => 
+                {
+                    FileInfo fi = new FileInfo(file_1);
 
 
 
-                image_d_.Source = bitmap;
+                    if (File.Exists(file_1))
+                    {
+                        labell.Visibility = Visibility.Hidden;
+                        BitmapImage bitmap = new BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.UriSource = new Uri(file_1);
+                        bitmap.EndInit();
+
+                        image_a_.Source = bitmap;
+
+                        imageProcessor = new ImageProcessor(file_1);
+                        imageProcessor.new_path = fi.Name + "_ip_" + fi.Extension;
+
+                        imageProcessor.DrawAsciiImage(imageProcessor.new_path);
 
 
-            }
+                        bitmap = new BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.UriSource = new Uri(new FileInfo(imageProcessor.new_path).FullName, UriKind.RelativeOrAbsolute);
+                        bitmap.EndInit();
+
+
+
+
+                        image_d_.Source = bitmap;
+
+
+                    }
+                    else
+                    {
+                        labell.Visibility = Visibility.Visible;
+                    }
+
+                }));
+            
+            
+            })).Start();
 
         }
     }
